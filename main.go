@@ -39,9 +39,10 @@ func main() {
 			switch ev := msg.Data.(type) {
 
 			case *slack.MessageEvent:
-				handleMessageEvent(MessageContext{
+				err := handleMessageEvent(MessageContext{
 					api, env, rtm,
 				}, ev)
+				log.Println("Error: ", err.Error())
 
 			case *slack.RTMError:
 				fmt.Printf("Error: %s\n", ev.Error())
